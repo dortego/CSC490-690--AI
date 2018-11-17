@@ -1,11 +1,13 @@
 package ai_game;
 
 import java.awt.Graphics;
-import java.util.LinkedList;
+import java.util.ArrayList;
+
 
 public class Handler {
   
-  LinkedList<GameObject> object = new LinkedList<>();
+//  LinkedList<GameObject> object = new LinkedList<>();
+  ArrayList<GameObject> object = new ArrayList<>();
   
   public void tick() {
     for (int i = 0; i < object.size(); i++) {

@@ -12,17 +12,23 @@ public class SmartEnemy extends GameObject {
     
     this.handler = handler;
     
+    // to id agent
     for (int i = 0; i < handler.object.size(); i++) {
       if (handler.object.get(i).getId() == ID.Player)
         player = handler.object.get(i);
     }
   }
   
+//  @Override
+//  public Rectangle getBounds() {
+//    return new Rectangle((int)x, (int)y, 32, 32);
+//  } 
+
   @Override
   public Rectangle getBounds() {
-    return new Rectangle((int)x, (int)y, 16, 16);
+    return new Rectangle((int)x-100, (int)y-100, 200, 200);
   } 
-
+  
   @Override
   public void tick() {
     x += velX;
@@ -41,12 +47,12 @@ public class SmartEnemy extends GameObject {
 //    if (y <= 0 || y >= Game.HEIGHT - 32)
 //      velY = -velY;
     
-    handler.addObject(new Trail(x, y, ID.Trail, Color.green, 16, 16, 0.04f, handler));
+//    handler.addObject(new Trail(x, y, ID.Trail, Color.green, 32, 32, 0.04f, handler));
   }
 
   @Override
   public void render(Graphics g) {
     g.setColor(Color.green);
-    g.fillRect((int)x, (int)y, 16, 16);
+    g.fillRect((int)x, (int)y, 32, 32);
   }
 }

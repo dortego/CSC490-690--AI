@@ -3,9 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/davidortego/Desktop/CSC%20690%20-%20AI/group_project_code/CSC490-690_AI_Final_Project/src/ai_game/Driver.java</file>
-            <file>file:/Users/davidortego/Desktop/CSC%20690%20-%20AI/group_project_code/CSC490-690_AI_Final_Project/src/ai_game/GamePanel.java</file>
-            <file>file:/Users/davidortego/Desktop/CSC%20690%20-%20AI/group_project_code/CSC490-690_AI_Final_Project/src/ai_game/Trapdoor.java</file>
+            <file>file:/Users/davidortego/Desktop/CSC690_AI/group_project_code/CSC490-690_AI_Final_Project/src/ai_game/Trail.java</file>
+            <file>file:/Users/davidortego/Desktop/CSC690_AI/group_project_code/CSC490-690_AI_Final_Project/src/ai_game/Trapdoor.java</file>
+            <file>file:/Users/davidortego/Desktop/CSC690_AI/group_project_code/CSC490-690_AI_Final_Project/src/ai_game/Agent.java</file>
+            <file>file:/Users/davidortego/Desktop/CSC690_AI/group_project_code/CSC490-690_AI_Final_Project/src/ai_game/Ricochet.java</file>
+            <file>file:/Users/davidortego/Desktop/CSC690_AI/group_project_code/CSC490-690_AI_Final_Project/src/ai_game/KeyInput.java</file>
+            <file>file:/Users/davidortego/Desktop/CSC690_AI/group_project_code/CSC490-690_AI_Final_Project/src/ai_game/Window.java</file>
+            <file>file:/Users/davidortego/Desktop/CSC690_AI/group_project_code/CSC490-690_AI_Final_Project/src/ai_game/Game.java</file>
+            <file>file:/Users/davidortego/Desktop/CSC690_AI/group_project_code/CSC490-690_AI_Final_Project/src/ai_game/GameObject.java</file>
+            <file>file:/Users/davidortego/Desktop/CSC690_AI/group_project_code/CSC490-690_AI_Final_Project/src/ai_game/ID.java</file>
+            <file>file:/Users/davidortego/Desktop/CSC690_AI/group_project_code/CSC490-690_AI_Final_Project/src/ai_game/SmartEnemy.java</file>
+            <file>file:/Users/davidortego/Desktop/CSC690_AI/group_project_code/CSC490-690_AI_Final_Project/src/ai_game/Handler.java</file>
         </group>
     </open-files>
 </project-private>

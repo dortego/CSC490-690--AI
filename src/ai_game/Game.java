@@ -2,34 +2,38 @@ package ai_game;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
-import java.util.Random;
+import java.security.SecureRandom;
 
 public class Game extends Canvas implements Runnable {
   
-  public final static int WIDTH = 640, HEIGHT = WIDTH / 12 * 9;
+//  public final static int WIDTH = 640, HEIGHT = WIDTH / 12 * 9;
+  public final static int WIDTH = 400, HEIGHT = WIDTH / 12 * 9;
   
   private Thread thread;
   private boolean running = false;
   
-  private Random r;
+  private SecureRandom r;
   private Handler handler;
 //  private HeadsUpDisplay hud;
   
   public Game() {
     handler = new Handler();
-    this.addKeyListener(new KeyInput(handler));
+//    this.addKeyListener(new KeyInput(handler));
     
     new Window(WIDTH, HEIGHT, "Game Frame", this);
     
 //    hud = new HeadsUpDisplay();
     
-    r = new Random();
+    r = new SecureRandom();
     
-    handler.addObject(new Player(WIDTH/2-32, HEIGHT/2-32, ID.Player, handler));
-//    for (int i = 0; i < 5; i++)
-//      handler.addObject(new BasicEnemy(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.BasicEnemy, handler));
-    for (int i = 0; i < 4; i++)
-      handler.addObject(new SmartEnemy(r.nextInt(WIDTH - 50), r.nextInt(HEIGHT - 50), ID.SmartEnemy, handler));
+    handler.addObject(new Trapdoor(r.nextInt((WIDTH/2) - 50), r.nextInt(HEIGHT - 50), ID.Trapdoor, handler));
+//    handler.addObject(new Player(WIDTH/2-32, HEIGHT/2-32, ID.Player, handler));
+    handler.addObject(new Player(WIDTH/4-32, HEIGHT/2-32, ID.Player, handler));
+//    for (int i = 0; i < 6; i++)
+//      handler.addObject(new Ricochet(r.nextInt((WIDTH/2) - 50), r.nextInt(HEIGHT - 50), ID.Ricochet, handler));
+      handler.addObject(new Ricochet(WIDTH-64, HEIGHT-64, ID.Ricochet, handler));
+//    for (int i = 0; i < 3; i++)
+//      handler.addObject(new SmartEnemy(r.nextInt(WIDTH - 50), r.nextInt(HEIGHT - 50), ID.SmartEnemy, handler));
   }
   
   public synchronized void start() {
@@ -50,7 +54,7 @@ public class Game extends Canvas implements Runnable {
   public void run() {
     this.requestFocus();
     long lastTime = System.nanoTime();
-    double amountOfTicks = 60.0;
+    double amountOfTicks = 100.0;
     double ns = 1000000000 / amountOfTicks;
     double delta = 0;
     long timer = System.currentTimeMillis();

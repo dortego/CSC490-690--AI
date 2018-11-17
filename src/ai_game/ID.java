@@ -3,8 +3,8 @@ package ai_game;
 public enum ID {
   
   Player(),
-  BasicEnemy(),
   SmartEnemy(),
+  Ricochet(),
   Trail(),
   Trapdoor();
   
