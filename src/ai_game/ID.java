@@ -6,6 +6,6 @@ public enum ID {
   SmartEnemy(),
   Ricochet(),
   Trail(),
-  Trapdoor();
+  Goal();
   
 }

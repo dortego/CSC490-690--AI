@@ -18,7 +18,7 @@ public class Game extends Canvas implements Runnable {
   
   public Game() {
     handler = new Handler();
-//    this.addKeyListener(new KeyInput(handler));
+    this.addKeyListener(new KeyInput(handler));
     
     new Window(WIDTH, HEIGHT, "Game Frame", this);
     
@@ -26,14 +26,14 @@ public class Game extends Canvas implements Runnable {
     
     r = new SecureRandom();
     
-    handler.addObject(new Trapdoor(r.nextInt((WIDTH/2) - 50), r.nextInt(HEIGHT - 50), ID.Trapdoor, handler));
+    handler.addObject(new Goal(r.nextInt((WIDTH/2) - 50), r.nextInt(HEIGHT - 50), ID.Goal, handler));
 //    handler.addObject(new Player(WIDTH/2-32, HEIGHT/2-32, ID.Player, handler));
     handler.addObject(new Player(WIDTH/4-32, HEIGHT/2-32, ID.Player, handler));
-//    for (int i = 0; i < 6; i++)
+//    for (int i = 0; i < 2; i++)
 //      handler.addObject(new Ricochet(r.nextInt((WIDTH/2) - 50), r.nextInt(HEIGHT - 50), ID.Ricochet, handler));
-      handler.addObject(new Ricochet(WIDTH-64, HEIGHT-64, ID.Ricochet, handler));
 //    for (int i = 0; i < 3; i++)
-//      handler.addObject(new SmartEnemy(r.nextInt(WIDTH - 50), r.nextInt(HEIGHT - 50), ID.SmartEnemy, handler));
+//      handler.addObject(new SmartEnemy(WIDTH-64, HEIGHT-64, ID.SmartEnemy, handler));
+      handler.addObject(new Ricochet(WIDTH/3, HEIGHT/3, ID.Ricochet, handler));
   }
   
   public synchronized void start() {

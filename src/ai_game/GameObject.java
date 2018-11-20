@@ -2,6 +2,7 @@ package ai_game;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.awt.geom.Ellipse2D;
 
 public abstract class GameObject {
   
@@ -18,6 +19,7 @@ public abstract class GameObject {
   public abstract void tick();
   public abstract void render(Graphics g);
   public abstract Rectangle getBounds();  
+//  public abstract Ellipse2D getBounds();  
   
   public void setX(float x) {
     this.x = x;

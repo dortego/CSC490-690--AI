@@ -1,12 +1,13 @@
 package ai_game;
 
 import java.awt.*;
+import java.util.Iterator;
 
 public class Player extends GameObject {
   
 //  Random r = new Random();
   Handler handler;
-  GameObject trapdoor; // = new Trapdoor();
+  GameObject goal;
   GameObject ricochet;
 //  Ricochet ricochet;
   GameObject smartenemy;
@@ -16,26 +17,37 @@ public class Player extends GameObject {
     super(x, y, id);
     this.handler = handler;
     
-    // to id trapdoor:
+    // to id goal:
     for (int i = 0; i < handler.object.size(); i++) {
-      if (handler.object.get(i).getId() == ID.Trapdoor)
-        trapdoor = handler.object.get(i);
+      if (handler.object.get(i).getId() == ID.Goal)
+        goal = handler.object.get(i);
     }
     
-    // to id ricochet:
-    for (int i = 0; i < handler.object.size(); i++) {
-      if (handler.object.get(i).getId() == ID.Ricochet)
-        ricochet = handler.object.get(i);
-    }
+//    Iterator<GameObject> iterator = handler.object.iterator();
+//    while(iterator.hasNext()) {
+//      if (handler.object.iterator().next().getId() == ID.Goal) {
+//        goal = iterator.next();
+//      } else if(handler.object.iterator().next().getId() == ID.Ricochet) {
+//        ricochet = iterator.next();
+//      } else if(handler.object.iterator().next().getId() == ID.SmartEnemy) {
+//        smartenemy = iterator.next();
+//      }
+//    }
     
-//    // to id smartenemy:
+//    // to id ricochet:
+//    for (int i = 0; i < handler.object.size(); i++) {
+//      if (handler.object.get(i).getId() == ID.Ricochet)
+//        ricochet = handler.object.get(i);
+//    }
+//    
+////    // to id smartenemy:
 //    for (int i = 0; i < handler.object.size(); i++) {
 //      if (handler.object.get(i).getId() == ID.SmartEnemy)
 //        smartenemy = handler.object.get(i);
 //    }
   }
   
-  // for collision detection of trapdoor
+  // for collision detection of goal
   public Rectangle getBounds() {
     return new Rectangle((int) x, (int) y, 48, 48);
 //    return new Rectangle((int)x - 16, (int)y - 16, 200, 200);
@@ -43,26 +55,26 @@ public class Player extends GameObject {
   
   // for collision detection of enemies
   public Rectangle getTooCloseBounds() {
-//    return new Rectangle((int) x, (int) y, 48, 48);
-    return new Rectangle((int)x - 75, (int)y - 80, 200, 200);
+    return new Rectangle((int) x, (int) y, 48, 48);
+//    return new Rectangle((int)x - 75, (int)y - 80, 200, 200);
+//    return new Rectangle((int)x-25, (int)y-30, 100, 100);
   }  
   
   public void tick() {
     x += velX;
     y += velY;
     
-    // **** agent trapdoor AI:
-    float diffX = x - trapdoor.getX() - 0.5f;
-    float diffY = y - trapdoor.getY() - 0.5f;
-    float distance = (float) Math.sqrt((x - trapdoor.getX()) * (x - trapdoor.getX()) 
-                                     + (y - trapdoor.getY()) * (y - trapdoor.getY()));
+    // **** agent to goal AI:
+    float diffX = x - goal.getX() - 0.5f;
+    float diffY = y - goal.getY() - 0.5f;
+    float distance = (float) Math.sqrt((x - goal.getX()) 
+                                     * (x - goal.getX()) 
+                                     + (y - goal.getY()) 
+                                     * (y - goal.getY()));
     
     velX = ((-1 / distance) * diffX);
     velY = ((-1 / distance) * diffY);
     // ****
-    
-//    x = Game.clamp(x, 0, Game.WIDTH - 32);
-//    y = Game.clamp(y, 0, Game.HEIGHT - 55);
 
     x = Game.clamp(x, 0, Game.WIDTH - 48);
     y = Game.clamp(y, 0, Game.HEIGHT - 70);
@@ -71,9 +83,10 @@ public class Player extends GameObject {
 //    handler.addObject(new Trail(x, y, ID.Trail, color, 48, 48, 0.04f, handler));
     
     tooClose();
+//    tooClose2();
   }
   
-  // agent avoid enemy AI:
+  // avoid ricochet:
   public void tooClose() {
     
     x += velX;
@@ -84,15 +97,31 @@ public class Player extends GameObject {
       // too close action:
       float diffX = x - ricochet.getX() - 1f;
       float diffY = y - ricochet.getY() - 1f;
-      float distance = (float) Math.sqrt((x - ricochet.getX()) * (x - ricochet.getX()) 
-                                       + (y - ricochet.getY()) * (y - ricochet.getY()));
+      float distance = (float) Math.sqrt((x - ricochet.getX()) 
+                                       * (x - ricochet.getX()) 
+                                       + (y - ricochet.getY()) 
+                                       * (y - ricochet.getY()));
 
-      velX = ((1 / distance) * diffX);
-      velY = ((1 / distance) * diffY);
+      velX = ((3 / distance) * diffX);
+      velY = ((3 / distance) * diffY);
+      this.setVelX(velX);
+      this.setVelX(velY);
     }
     
-//    smartenemy = handler.object.get(1);
-//    if (getBounds().intersects(smartenemy.getBounds())) {
+//    smartenemy = handler.object.get(0);
+//    if (getTooCloseBounds().intersects(smartenemy.getBounds())) {
+//      // too close action:
+//      float diffX = x - smartenemy.getX() - 0.5f;
+//      float diffY = y - smartenemy.getY() - 0.5f;
+//      float distance = (float) Math.sqrt((x - smartenemy.getX()) * (x - smartenemy.getX()) 
+//                                       + (y - smartenemy.getY()) * (y - smartenemy.getY()));
+//
+//      velX = ((1 / distance) * diffX);
+//      velY = ((1 / distance) * diffY);
+//    }
+    
+//    smartenemy = handler.object.get(0);
+//    if (getTooCloseBounds().intersects(smartenemy.getBounds())) {
 //      // too close action:
 //      float diffX = x - smartenemy.getX() - 0.5f;
 //      float diffY = y - smartenemy.getY() - 0.5f;
@@ -136,10 +165,30 @@ public class Player extends GameObject {
 //    } // end SmartEnemy reaction 
   }
   
+  // avoid smartenemy AI:
+  public void tooClose2() {
+    x += velX;
+    y += velY;
+    
+    smartenemy = handler.object.get(0);
+    if (getTooCloseBounds().intersects(smartenemy.getBounds())) {
+      // too close action:
+      float diffX = x - smartenemy.getX() - 1f;
+      float diffY = y - smartenemy.getY() - 1f;
+      float distance = (float) Math.sqrt((x - smartenemy.getX()) * (x - smartenemy.getX()) 
+                                       + (y - smartenemy.getY()) * (y - smartenemy.getY()));
+
+      velX = ((1 / distance) * diffX);
+      velY = ((1 / distance) * diffY);
+      this.setVelX(velX);
+      this.setVelX(velY);
+    }
+  }
+  
 //  public void collision() {
 //    for (int i = 0; i < handler.object.size(); i++) {
 //      GameObject tempObject = handler.object.get(i);
-//      if (tempObject.getId() == ID.Trapdoor) { // tempObject is now BasicEnemy
+//      if (tempObject.getId() == ID.Goal) { // tempObject is now BasicEnemy
 //        if (getBounds().intersects(tempObject.getBounds())) {
 //          // collision code:
 ////          HeadsUpDisplay.HEALTH -= 2;
@@ -152,9 +201,9 @@ public class Player extends GameObject {
   
   public void render(Graphics g) {
     // show bounding box for collision detection:
-//    Graphics2D g2d = (Graphics2D) g;
-//    g.setColor(Color.yellow);
-//    g2d.draw(getTooCloseBounds());
+    Graphics2D g2d = (Graphics2D) g;
+    g.setColor(Color.yellow);
+    g2d.draw(getTooCloseBounds());
     
     g.setColor(color);
     g.fillOval((int) x,(int) y, 48, 48);
